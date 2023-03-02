@@ -1,0 +1,18 @@
+include MANIFEST.in
+include requirements.txt
+include *.json
+include *.md
+include *.py
+include *.txt
+recursive-include simpliq *.css
+recursive-include simpliq *.csv
+recursive-include simpliq *.html
+recursive-include simpliq *.ico
+recursive-include simpliq *.js
+recursive-include simpliq *.json
+recursive-include simpliq *.md
+recursive-include simpliq *.png
+recursive-include simpliq *.py
+recursive-include simpliq *.svg
+recursive-include simpliq *.txt
+recursive-exclude simpliq *.pyc
