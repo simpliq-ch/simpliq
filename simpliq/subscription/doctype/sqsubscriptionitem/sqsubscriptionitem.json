@@ -45,11 +45,41 @@
    "label": "Autorenew"
   },
   {
+   "fieldname": "col_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "interval",
+   "fieldtype": "Select",
+   "label": "Interval",
+   "options": "Yearly\nMonthly"
+  },
+  {
+   "fieldname": "sec_item",
+   "fieldtype": "Section Break",
+   "label": "Item"
+  },
+  {
+   "fieldname": "item",
+   "fieldtype": "Link",
+   "label": "Item",
+   "options": "Item"
+  },
+  {
    "fieldname": "qty",
    "fieldtype": "Float",
    "in_list_view": 1,
    "label": "Quantity",
    "reqd": 1
+  },
+  {
+   "fieldname": "days_to_termination",
+   "fieldtype": "Int",
+   "label": "Days to termination"
+  },
+  {
+   "fieldname": "col_2",
+   "fieldtype": "Column Break"
   },
   {
    "fieldname": "start_date",
@@ -64,45 +94,15 @@
    "label": "End Date"
   },
   {
-   "fieldname": "interval",
-   "fieldtype": "Select",
-   "label": "Interval",
-   "options": "Yearly\nMonthly"
-  },
-  {
-   "fieldname": "days_to_termination",
-   "fieldtype": "Int",
-   "label": "Days to termination"
+   "fieldname": "sec_period",
+   "fieldtype": "Section Break",
+   "label": "Period"
   },
   {
    "fieldname": "period",
    "fieldtype": "Table",
    "label": "Period",
    "options": "sqSubscriptionPeriod"
-  },
-  {
-   "fieldname": "sec_item",
-   "fieldtype": "Section Break",
-   "label": "Item"
-  },
-  {
-   "fieldname": "item",
-   "fieldtype": "Link",
-   "label": "Item",
-   "options": "Item"
-  },
-  {
-   "fieldname": "sec_period",
-   "fieldtype": "Section Break",
-   "label": "Period"
-  },
-  {
-   "fieldname": "col_1",
-   "fieldtype": "Column Break"
-  },
-  {
-   "fieldname": "col_2",
-   "fieldtype": "Column Break"
   },
   {
    "fieldname": "test",
@@ -113,9 +113,9 @@
  "index_web_pages_for_search": 1,
  "is_calendar_and_gantt": 1,
  "links": [],
- "modified": "2023-03-06 16:52:31.198461",
+ "modified": "2023-03-09 10:20:10.968835",
  "modified_by": "Administrator",
- "module": "simpliq",
+ "module": "Subscription",
  "name": "sqSubscriptionItem",
  "owner": "Administrator",
  "permissions": [
