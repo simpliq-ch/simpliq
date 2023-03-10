@@ -4,6 +4,19 @@
 
 frappe.query_reports["Subscription Report"] = {
 	"filters": [
+		{
+            fieldname: 'customer',
+            label: __('Customer'),
+            fieldtype: 'Link',
+            options: 'Customer'
+        },
+        {
+            fieldname: 'enabled',
+            label: __('Enabled'),
+            fieldtype: 'Check',
+			default: true
+		}
 
-	]
+	],
+    "initial_depth": 0
 };

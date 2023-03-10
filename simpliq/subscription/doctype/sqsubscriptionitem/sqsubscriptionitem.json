@@ -1,6 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "SUB-.#######",
  "creation": "2023-03-03 21:45:32.116382",
  "default_view": "List",
  "doctype": "DocType",
@@ -113,10 +114,11 @@
  "index_web_pages_for_search": 1,
  "is_calendar_and_gantt": 1,
  "links": [],
- "modified": "2023-03-09 10:20:10.968835",
+ "modified": "2023-03-10 14:55:19.521042",
  "modified_by": "Administrator",
  "module": "Subscription",
  "name": "sqSubscriptionItem",
+ "naming_rule": "Expression (old style)",
  "owner": "Administrator",
  "permissions": [
   {

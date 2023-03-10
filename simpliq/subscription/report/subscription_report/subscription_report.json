@@ -8,17 +8,24 @@
  "doctype": "Report",
  "filters": [
   {
-   "fieldname": "Customer",
-   "fieldtype": "Check",
+   "fieldname": "customer",
+   "fieldtype": "Link",
    "label": "Customer",
    "mandatory": 1,
+   "wildcard_filter": 1
+  },
+  {
+   "fieldname": "enabled",
+   "fieldtype": "Check",
+   "label": "Enabled",
+   "mandatory": 0,
    "wildcard_filter": 0
   }
  ],
  "idx": 0,
  "is_standard": "Yes",
  "letter_head": "SQ Standart",
- "modified": "2023-03-09 10:20:46.650490",
+ "modified": "2023-03-09 18:33:49.738502",
  "modified_by": "Administrator",
  "module": "Subscription",
  "name": "Subscription Report",

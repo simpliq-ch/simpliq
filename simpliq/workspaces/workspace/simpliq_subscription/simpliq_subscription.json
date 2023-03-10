@@ -1,6 +1,6 @@
 {
  "charts": [],
- "content": "[{\"id\":\"CkmjPeZ3lX\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Simpliq</span>\",\"col\":12}},{\"id\":\"QyKx4YR3UY\",\"type\":\"card\",\"data\":{\"card_name\":\"Subscription\",\"col\":4}}]",
+ "content": "[{\"id\":\"CkmjPeZ3lX\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Simpliq</span>\",\"col\":12}},{\"id\":\"QyKx4YR3UY\",\"type\":\"card\",\"data\":{\"card_name\":\"Subscription\",\"col\":4}},{\"id\":\"U-eDR-7KHL\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Report\",\"col\":3}}]",
  "creation": "2023-03-09 10:28:59.528161",
  "docstatus": 0,
  "doctype": "Workspace",
@@ -50,7 +50,7 @@
    "type": "Link"
   }
  ],
- "modified": "2023-03-09 16:09:45.121243",
+ "modified": "2023-03-10 14:42:04.908398",
  "modified_by": "Administrator",
  "module": "Workspaces",
  "name": "Simpliq Subscription",
@@ -59,7 +59,15 @@
  "public": 1,
  "quick_lists": [],
  "roles": [],
- "sequence_id": 34.0,
- "shortcuts": [],
+ "sequence_id": 2.0,
+ "shortcuts": [
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Report",
+   "link_to": "Subscription Report",
+   "type": "Report"
+  }
+ ],
  "title": "Simpliq Subscription"
 }
