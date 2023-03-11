@@ -9,20 +9,11 @@
  "engine": "InnoDB",
  "field_order": [
   "customer",
-  "enabled",
   "autorenew",
-  "col_1",
-  "interval",
   "sec_item",
   "item",
-  "qty",
-  "days_to_termination",
-  "col_2",
-  "start_date",
-  "end_date",
   "sec_period",
-  "period",
-  "test"
+  "period"
  ],
  "fields": [
   {
@@ -35,25 +26,9 @@
   },
   {
    "default": "true",
-   "fieldname": "enabled",
-   "fieldtype": "Check",
-   "label": "Enabled"
-  },
-  {
-   "default": "true",
    "fieldname": "autorenew",
    "fieldtype": "Check",
    "label": "Autorenew"
-  },
-  {
-   "fieldname": "col_1",
-   "fieldtype": "Column Break"
-  },
-  {
-   "fieldname": "interval",
-   "fieldtype": "Select",
-   "label": "Interval",
-   "options": "Yearly\nMonthly"
   },
   {
    "fieldname": "sec_item",
@@ -67,34 +42,6 @@
    "options": "Item"
   },
   {
-   "fieldname": "qty",
-   "fieldtype": "Float",
-   "in_list_view": 1,
-   "label": "Quantity",
-   "reqd": 1
-  },
-  {
-   "fieldname": "days_to_termination",
-   "fieldtype": "Int",
-   "label": "Days to termination"
-  },
-  {
-   "fieldname": "col_2",
-   "fieldtype": "Column Break"
-  },
-  {
-   "fieldname": "start_date",
-   "fieldtype": "Date",
-   "in_list_view": 1,
-   "label": "Start Date",
-   "reqd": 1
-  },
-  {
-   "fieldname": "end_date",
-   "fieldtype": "Date",
-   "label": "End Date"
-  },
-  {
    "fieldname": "sec_period",
    "fieldtype": "Section Break",
    "label": "Period"
@@ -103,18 +50,14 @@
    "fieldname": "period",
    "fieldtype": "Table",
    "label": "Period",
-   "options": "sqSubscriptionPeriod"
-  },
-  {
-   "fieldname": "test",
-   "fieldtype": "Data",
-   "label": "Test"
+   "options": "sqSubscriptionPeriod",
+   "reqd": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "is_calendar_and_gantt": 1,
  "links": [],
- "modified": "2023-03-10 14:55:19.521042",
+ "modified": "2023-03-11 13:35:45.002353",
  "modified_by": "Administrator",
  "module": "Subscription",
  "name": "sqSubscriptionItem",

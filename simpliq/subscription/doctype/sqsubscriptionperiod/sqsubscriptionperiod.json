@@ -8,6 +8,8 @@
  "field_order": [
   "sales_invoice",
   "start_date",
+  "end_date",
+  "qty",
   "status"
  ],
  "fields": [
@@ -22,7 +24,8 @@
    "fieldname": "start_date",
    "fieldtype": "Date",
    "in_list_view": 1,
-   "label": "Start Date"
+   "label": "Start Date",
+   "reqd": 1
   },
   {
    "fetch_from": "sales_invoice.status",
@@ -30,12 +33,28 @@
    "fieldtype": "Data",
    "in_list_view": 1,
    "label": "Status"
+  },
+  {
+   "fieldname": "end_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "End Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "qty",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Quantity",
+   "non_negative": 1,
+   "precision": "0",
+   "reqd": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2023-03-10 14:56:56.597382",
+ "modified": "2023-03-11 13:37:55.028732",
  "modified_by": "Administrator",
  "module": "Subscription",
  "name": "sqSubscriptionPeriod",
