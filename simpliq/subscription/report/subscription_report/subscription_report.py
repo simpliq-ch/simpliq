@@ -2,6 +2,7 @@
 # For license information, please see license.txt
 
 import frappe
+from frappe import _
 
 
 def execute(filters=None):
@@ -42,8 +43,8 @@ def get_data(filters):
     return data
 
 
-def get_Invoivable_entries(customer):
-    dataSubscription = frappe.db.get_list('sqSubscriptionItem',filters={'customer': customer} ,fields=['name', 'item'])
+def get_Invoicable_entries(customer):
+    dataSubscription = frappe.db.get_list('sqSubscriptionItem',filters={'customer': customer} ,fields=['name', 'item', 'autorenew'])
     #frappe.throw(str(data))
     data = []
     for d in dataSubscription:
@@ -51,9 +52,9 @@ def get_Invoivable_entries(customer):
         
         for p in dataSubscriptionPeriod:
             p.item = d.item
-            
+            p.autorenew = d.autorenew
             data.append(p)
-        data.append(p)
+
     #frappe.throw(str(data))
     return data
 
@@ -61,7 +62,7 @@ def get_Invoivable_entries(customer):
 @frappe.whitelist()
 def create_invoice(customer):
 
-    entries = get_Invoivable_entries(customer)
+    entries = get_Invoicable_entries(customer)
     #frappe.msgprint(str(entries), "Debug")
     sinv = frappe.get_doc({
         'doctype': "Sales Invoice",
@@ -70,26 +71,35 @@ def create_invoice(customer):
     })
     
     for e in entries:
-        
+
+        strStart = _('Start')
+        strEnd = _('Ende')
+        strPeriod = _('Periode')
+        strAutorenew = _('Wird erneuert')
+        if e.autorenew == True:
+            strAutorenewF = _('Wird erneuert') + ":&nbsp;" + _('Yes')
+        else:
+            strAutorenewF = _('Wird erneuert') + ":&nbsp;" + _('No')
+
         item = {
             'item_code': e.item,
             'qty': e.qty,
-            'rate': 99,
-            'description': "Test description",            # will be overwritten by frappe
-            'remarks': "Test remakrks"
-
+            'rate': frappe.db.get_value('Item Price',{'item_code': e.item}, 'price_list_rate'),
+            'description': strPeriod + ":&nbsp;" + str(e.idx) + "<br>" + strStart + ":&nbsp;" + str(e.start_date) + "<br>" + strEnd + ":&nbsp;"+ str(e.end_date) + "<br>" + strAutorenewF,
+            'remarks': "-"
         }
         sinv.append('items', item)
         
     sinv.insert()
 
-
-    # insert abo references
     for e in entries:
-        docSubscriptionPeriod = frappe.get_doc("sqSubscriptionPeriod", e.name)
-        docSubscriptionPeriod.db_set('sales_invoice', sinv.name)
-        docSubscriptionPeriod.save()
-        
+        d = frappe.get_doc('sqSubscriptionPeriod', e.name)
+        d.db_set('sales_invoice', sinv.name, commit=True)
+        d.save(
+            ignore_permissions=True, # ignore write permissions during insert
+            ignore_version=True # do not create a version record
+        )
+
     frappe.db.commit()
     
     return sinv.name
