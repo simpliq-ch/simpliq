@@ -31,7 +31,7 @@
  "name": "Subscription Report",
  "owner": "Administrator",
  "prepared_report": 0,
- "ref_doctype": "sqSubscriptionItem",
+ "ref_doctype": "Subscription Item",
  "report_name": "Subscription Report",
  "report_type": "Script Report",
  "roles": [

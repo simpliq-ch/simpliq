@@ -1,6 +1,6 @@
 {
  "charts": [],
- "content": "[{\"id\":\"CkmjPeZ3lX\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Simpliq</span>\",\"col\":12}},{\"id\":\"QyKx4YR3UY\",\"type\":\"card\",\"data\":{\"card_name\":\"Subscription\",\"col\":4}},{\"id\":\"U-eDR-7KHL\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Report\",\"col\":3}}]",
+ "content": "[{\"id\":\"CkmjPeZ3lX\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Subscription</span>\",\"col\":12}},{\"id\":\"smLraBc7Xg\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"New Subscription\",\"col\":3}},{\"id\":\"cMAroBcNFL\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Subscription List\",\"col\":3}},{\"id\":\"6mYRyhB81a\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"Q4_mron1Qz\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Sales Invoice / Generate new Periods</b></span>\",\"col\":12}},{\"id\":\"Ti3DaiIktg\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Report Create Invoices\",\"col\":3}}]",
  "creation": "2023-03-09 10:28:59.528161",
  "docstatus": 0,
  "doctype": "Workspace",
@@ -20,37 +20,9 @@
    "link_type": "Report",
    "onboard": 0,
    "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Subscription",
-   "link_count": 2,
-   "onboard": 0,
-   "type": "Card Break"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "New Subscription",
-   "link_count": 0,
-   "link_to": "sqSubscriptionItem",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Report & Invoicing",
-   "link_count": 0,
-   "link_to": "Subscription Report",
-   "link_type": "Report",
-   "onboard": 0,
-   "type": "Link"
   }
  ],
- "modified": "2023-03-10 14:42:04.908398",
+ "modified": "2023-03-23 17:18:47.041306",
  "modified_by": "Administrator",
  "module": "Workspaces",
  "name": "Simpliq Subscription",
@@ -62,11 +34,25 @@
  "sequence_id": 2.0,
  "shortcuts": [
   {
+   "color": "Green",
+   "doc_view": "New",
+   "label": "New Subscription",
+   "link_to": "Subscription Item",
+   "type": "DocType"
+  },
+  {
    "color": "Grey",
    "doc_view": "List",
-   "label": "Report",
+   "label": "Report Create Invoices",
    "link_to": "Subscription Report",
    "type": "Report"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Subscription List",
+   "link_to": "Subscription Item",
+   "type": "DocType"
   }
  ],
  "title": "Simpliq Subscription"

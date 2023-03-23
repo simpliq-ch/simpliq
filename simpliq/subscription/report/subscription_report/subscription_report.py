@@ -18,7 +18,7 @@ def execute(filters=None):
 def get_columns():
     return [
         {'fieldname': 'customer', 'label': 'Customer', 'fieldtype': 'Link', 'options': 'Customer', 'width': 180},
-        {'fieldname': 'name', 'label': 'Subscription', 'fieldtype': 'Link', 'options': 'sqSubscriptionItem','width': 100},
+        {'fieldname': 'name', 'label': 'Subscription', 'fieldtype': 'Link', 'options': 'Subscription Item','width': 100},
         #{'fieldname': 'autorenew', 'label': 'Autorenew', 'fieldtype': 'Check', 'width': 100},
         {'fieldname': 'item', 'label': 'Item', 'fieldtype': 'Link', 'options': 'Item', 'width': 250},
         {'fieldname': 'start_date', 'label': 'Start Date', 'fieldtype': 'Date', 'width': 95},
@@ -29,11 +29,11 @@ def get_columns():
 
 def get_data(filters):
 
-    dataSubscription = frappe.db.get_list('sqSubscriptionItem',filters={'customer': filters.customer} ,fields=['customer', 'autorenew', 'item', 'name'])
+    dataSubscription = frappe.db.get_list('Subscription Item',filters={'customer': filters.customer} ,fields=['customer', 'autorenew', 'item', 'name'])
     #frappe.throw(str(data))
     data = []
     for d in dataSubscription:
-        dataSubscriptionPeriod = frappe.db.get_list('sqSubscriptionPeriod',filters={'parent': d.name,'sales_invoice': ["is", "not set"]} ,fields=['sales_invoice','start_date','end_date', 'idx', 'status', 'parent', 'name', 'qty'])
+        dataSubscriptionPeriod = frappe.db.get_list('Subscription Period',filters={'parent': d.name,'sales_invoice': ["is", "not set"]} ,fields=['sales_invoice','start_date','end_date', 'idx', 'status', 'parent', 'name', 'qty'])
         d.indent = 0
         totalAmount = 0
         for p in dataSubscriptionPeriod: 
@@ -57,10 +57,10 @@ def get_summary(filters):
     numOfOPenPeriods,totalAmountOfOpenPeriods = 0,0
     customerList = []
     customerString = ""
-    dataSubscription = frappe.db.get_list('sqSubscriptionItem',fields=['customer', 'item', 'name'])
+    dataSubscription = frappe.db.get_list('Subscription Item',fields=['customer', 'item', 'name'])
 
     for d in dataSubscription:
-        dataSubscriptionPeriod = frappe.db.get_list('sqSubscriptionPeriod',filters={'parent': d.name, 'sales_invoice': ["is", "not set"]} ,fields=['qty'])
+        dataSubscriptionPeriod = frappe.db.get_list('Subscription Period',filters={'parent': d.name, 'sales_invoice': ["is", "not set"]} ,fields=['qty'])
         if dataSubscriptionPeriod: 
             if d.customer not in customerList:
                 customerList.append( d.customer)
@@ -68,7 +68,7 @@ def get_summary(filters):
                 totalAmountOfOpenPeriods += (frappe.db.get_value('Item Price', {'item_code': d.item,}, 'price_list_rate') * p.qty)
 
     totalAmountOfOpenPeriodsStr = str(totalAmountOfOpenPeriods) + " CHF"
-    dataSubscriptionPeriodAll = frappe.db.get_list('sqSubscriptionPeriod',filters={'sales_invoice': ["is", "not set"]} ,fields=['sales_invoice','start_date','end_date', 'idx', 'status', 'parent', 'name', 'qty'])
+    dataSubscriptionPeriodAll = frappe.db.get_list('Subscription Period',filters={'sales_invoice': ["is", "not set"]} ,fields=['sales_invoice','start_date','end_date', 'idx', 'status', 'parent', 'name', 'qty'])
 
     for c in customerList:
         customerString += c + "<br>"
@@ -96,11 +96,11 @@ def get_summary(filters):
 
 
 def get_Invoicable_entries(customer):
-    dataSubscription = frappe.db.get_list('sqSubscriptionItem',filters={'customer': customer} ,fields=['name', 'item', 'autorenew'])
+    dataSubscription = frappe.db.get_list('Subscription Item',filters={'customer': customer} ,fields=['name', 'item', 'autorenew'])
     #frappe.throw(str(data))
     data = []
     for d in dataSubscription:
-        dataSubscriptionPeriod = frappe.db.get_list('sqSubscriptionPeriod',filters={'parent': d.name,'sales_invoice': ["is", "not set"]} ,fields=['sales_invoice','start_date','end_date', 'idx', 'status', 'qty', 'name'])
+        dataSubscriptionPeriod = frappe.db.get_list('Subscription Period',filters={'parent': d.name,'sales_invoice': ["is", "not set"]} ,fields=['sales_invoice','start_date','end_date', 'idx', 'status', 'qty', 'name'])
         
         for p in dataSubscriptionPeriod:
             p.item = d.item
@@ -145,7 +145,7 @@ def create_invoice(customer):
     sinv.insert()
 
     for e in entries:
-        d = frappe.get_doc('sqSubscriptionPeriod', e.name)
+        d = frappe.get_doc('Subscription Period', e.name)
         d.db_set('sales_invoice', sinv.name, commit=True)
         d.save(
             ignore_permissions=True, # ignore write permissions during insert
@@ -158,19 +158,18 @@ def create_invoice(customer):
 
 @frappe.whitelist()
 def check_newperiod(customer):
-    dataSubscription = frappe.db.get_list('sqSubscriptionItem',filters={'autorenew': True} ,fields=['customer', 'autorenew', 'name'])
+    dataSubscription = frappe.db.get_list('Subscription Item',filters={'autorenew': True} ,fields=['customer', 'autorenew', 'name'])
     r = "nothing added" 
     for d in dataSubscription:
 
         next = True
 
         while next:
-            #dataSubscriptionPeriod = frappe.db.get_list('sqSubscriptionPeriod',filters={'parent': d.name,'end_date': ["<=", add_to_date(today(), months=1)]} ,fields=['start_date','end_date', 'parent', 'name', 'qty'])
-            lastperiod = frappe.get_last_doc('sqSubscriptionPeriod', filters={"parent": d.name}, order_by='end_date desc')
+            lastperiod = frappe.get_last_doc('Subscription Period', filters={"parent": d.name}, order_by='end_date desc')
 
             #frappe.msgprint(str(add_to_date(today(), months=1, as_datetime=True)), "Debug")
             if getdate(lastperiod.end_date) <= getdate(add_to_date(today(), months=1, as_datetime=True)):
-                period = frappe.new_doc('sqSubscriptionPeriod')
+                period = frappe.new_doc('Subscription Period')
                 period.qty = lastperiod.qty
                 period.parent = lastperiod.parent
                 period.parenttype = lastperiod.parenttype

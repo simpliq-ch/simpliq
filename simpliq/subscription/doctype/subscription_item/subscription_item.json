@@ -51,17 +51,17 @@
    "fieldname": "period",
    "fieldtype": "Table",
    "label": "Period",
-   "options": "sqSubscriptionPeriod",
+   "options": "Subscription Period",
    "reqd": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "is_calendar_and_gantt": 1,
  "links": [],
- "modified": "2023-03-23 15:11:14.894459",
+ "modified": "2023-03-23 17:17:32.864860",
  "modified_by": "Administrator",
  "module": "Subscription",
- "name": "sqSubscriptionItem",
+ "name": "Subscription Item",
  "naming_rule": "Expression (old style)",
  "owner": "Administrator",
  "permissions": [

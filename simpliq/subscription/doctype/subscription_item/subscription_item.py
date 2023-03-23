@@ -4,5 +4,5 @@
 # import frappe
 from frappe.model.document import Document
 
-class sqSubscriptionPeriod(Document):
+class SubscriptionItem(Document):
 	pass

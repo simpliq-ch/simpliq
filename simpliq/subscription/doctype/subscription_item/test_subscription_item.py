@@ -5,5 +5,5 @@
 from frappe.tests.utils import FrappeTestCase
 
 
-class TestsqSubscriptionItem(FrappeTestCase):
+class TestSubscriptionItem(FrappeTestCase):
 	pass
