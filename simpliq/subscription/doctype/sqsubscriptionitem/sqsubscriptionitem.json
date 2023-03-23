@@ -39,7 +39,8 @@
    "fieldname": "item",
    "fieldtype": "Link",
    "label": "Item",
-   "options": "Item"
+   "options": "Item",
+   "reqd": 1
   },
   {
    "fieldname": "sec_period",
@@ -57,7 +58,7 @@
  "index_web_pages_for_search": 1,
  "is_calendar_and_gantt": 1,
  "links": [],
- "modified": "2023-03-11 13:35:45.002353",
+ "modified": "2023-03-23 15:11:14.894459",
  "modified_by": "Administrator",
  "module": "Subscription",
  "name": "sqSubscriptionItem",

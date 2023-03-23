@@ -1,6 +1,6 @@
 {
  "actions": [],
- "allow_rename": 1,
+ "autoname": "autoincrement",
  "creation": "2023-03-03 22:30:43.600438",
  "doctype": "DocType",
  "editable_grid": 1,
@@ -10,7 +10,8 @@
   "start_date",
   "end_date",
   "qty",
-  "status"
+  "status",
+  "period_nr"
  ],
  "fields": [
   {
@@ -49,15 +50,22 @@
    "non_negative": 1,
    "precision": "0",
    "reqd": 1
+  },
+  {
+   "fieldname": "period_nr",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Period Nr."
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2023-03-11 13:37:55.028732",
+ "modified": "2023-03-23 09:32:40.543322",
  "modified_by": "Administrator",
  "module": "Subscription",
  "name": "sqSubscriptionPeriod",
+ "naming_rule": "Autoincrement",
  "owner": "Administrator",
  "permissions": [],
  "sort_field": "modified",
